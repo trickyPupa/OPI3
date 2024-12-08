@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ace="http://www.icefaces.org/icefaces/components">
+
+<h:head>
+    <title>JSF LAB</title>
+    <meta charset="UTF-8"/>
+
+</h:head>
+<h:body>
+
+    <h:outputStylesheet library="stylings" name="index.css"/>
+    <h:outputScript library="scripts" name="scripts.js" target="head">
+        <f:passThroughAttribute name="defer" value="true"/>
+    </h:outputScript>
+    <h:outputScript library="scripts" name="area.js" target="head">
+        <f:passThroughAttribute name="defer" value="true"/>
+    </h:outputScript>
+    <h:panelGroup layout="block" styleClass="header">
+        <div class="name">
+            МАМОНТОВ АЛЕКСАНДР
+        </div>
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" styleClass="main-info">
+        <div class="graph">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="inputs" id="coordInputs">
+            <h:form class="form">
+                <div class="x">
+                    <p class="x-text">X:</p>
+                    <h:selectOneMenu value="#{formControllerBean.selectedX}" class="x-menu">
+                        <f:selectItem itemValue="-2" itemLabel="-2"/>
+                        <f:selectItem itemValue="-1.5" itemLabel="-1.5"/>
+                        <f:selectItem itemValue="-1" itemLabel="-1"/>
+                        <f:selectItem itemValue="-0.5" itemLabel="-0.5"/>
+                        <f:selectItem itemValue="0" itemLabel="0"/>
+                        <f:selectItem itemValue="0.5" itemLabel="0.5"/>
+                        <f:selectItem itemValue="1" itemLabel="1"/>
+                        <f:selectItem itemValue="1.5" itemLabel="1.5"/>
+                        <f:selectItem itemValue="2" itemLabel="2"/>
+                    </h:selectOneMenu>
+                </div>
+
+                <div class="y-container">
+                    <h:inputText value="#{formControllerBean.selectedY}" id="y" required="true" class=""/>
+                    <p>(-3;5)</p>
+                    <label class="text" for="y">Y:</label>
+                </div>
+
+                <div class="r">
+                    <p class="r-text">R:</p>
+                    <ace:sliderEntry id="sliderR"
+                                     value="#{formControllerBean.selectedR}"
+                                     min="2"
+                                     max="5"
+                                     length="100px"
+                                     stepPercent="0.25"
+                                     axis="x"/>
+                </div>
+
+                <h:commandButton value="ОТПРАВИТЬ" action="#{formControllerBean.submit}" class="sendDataButton"/>
+            </h:form>
+        </div>
+    </h:panelGroup>
+
+    <h:dataTable value="#{saver.results}" var="result" styleClass="table" id="table">
+        <h:column>
+            <f:facet name="header">X</f:facet>
+            #{result.dot.x}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Y</f:facet>
+            #{result.dot.y}
+        </h:column>
+        <h:column>
+            <f:facet name="header">R</f:facet>
+            #{result.dot.r}
+        </h:column>
+        <h:column>
+            <f:facet name="header">СТАТУС</f:facet>
+            #{result.status}
+        </h:column>
+        <h:column>
+            <f:facet name="header">ВРЕМЯ ВЫПОЛНЕНИЯ</f:facet>
+            #{result.currentTime}
+        </h:column>
+        <h:column>
+            <f:facet name="header">ВРЕМЯ ВЫПОЛНЕНИЯ СКРИПТА</f:facet>
+            #{result.timeOfCalculating} ms
+        </h:column>
+    </h:dataTable>
+
+
+</h:body>
+</html>
