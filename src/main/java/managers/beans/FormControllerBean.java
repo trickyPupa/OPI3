@@ -1,21 +1,29 @@
 package managers.beans;
 
 
+import managers.DebugTool;
 import managers.dataModels.Dot;
+import managers.databaseManager.DatabaseCreator;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.logging.Logger;
 
 @Named("formControllerBean")
 @RequestScoped
-public class FormControllerBean {
+public class FormControllerBean implements Serializable {
 
     @Inject
-    private MethodControllerBean controller;
-
+    private  MethodControllerBean controller;
     @Inject
-    ErrorControllerBean error;
+    private  ErrorControllerBean error;
+
+    private final DebugTool logger = new DebugTool();
 
     private String selectedX;
     private String selectedY;
@@ -49,6 +57,15 @@ public class FormControllerBean {
         processFormData();
     }
 
+    @PostConstruct
+    public void init() {
+        try {
+            DatabaseCreator.createTables();
+            logger.info("Tables created");
+        } catch (Exception e) {
+            logger.warning(e.getMessage());
+        }
+    }
 
     private void processFormData() {
         try {

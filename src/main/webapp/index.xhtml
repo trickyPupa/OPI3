@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ace="http://www.icefaces.org/icefaces/components">
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:ice="http://www.icefaces.org/icefaces/components">
 
 <h:head>
     <title>JSF LAB</title>
@@ -23,14 +24,14 @@
             МАМОНТОВ АЛЕКСАНДР
         </div>
     </h:panelGroup>
+    <h:form class="form" id="frm">
+        <h:panelGroup layout="block" styleClass="main-info">
+            <div class="graph">
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="inputs" id="coordInputs">
 
-    <h:panelGroup layout="block" styleClass="main-info">
-        <div class="graph">
-            <canvas id="canvas"></canvas>
-        </div>
-        <div class="inputs" id="coordInputs">
 
-            <h:form class="form" id="frm">
                 <div class="x">
                     <p class="x-text">X:</p>
                     <h:selectOneMenu value="#{formControllerBean.selectedX}" class="x-menu">
@@ -49,7 +50,7 @@
                 <div class="y-container">
                     <h:inputText value="#{formControllerBean.selectedY}" id="y" required="true" class="y-input"/>
                     <p>(-3;5)</p>
-                    <label class="text" for="y">Y:</label>
+                    <label class="text">Y:</label>
                 </div>
 
                 <div class="r">
@@ -60,45 +61,44 @@
                                      length="100px"
                                      stepPercent="25"
                                      axis="x"
-                                     onSlide="onSliderMove(event)"
+                                     onSlideEnd="onSliderMove(event)"
                                      clickableRail="true"/>
 
                 </div>
 
                 <h:commandButton value="ОТПРАВИТЬ" action="#{formControllerBean.submit}">
-                    <f:ajax execute="@form" render="table"/>
+                    <ace:ajax execute="@form" render="frm:table"/>
                 </h:commandButton>
-            </h:form>
-        </div>
-    </h:panelGroup>
+            </div>
+        </h:panelGroup>
 
-    <h:dataTable value="#{pointsDAO.results}" var="result" styleClass="table" id="table">
-        <h:column>
-            <f:facet name="header">X</f:facet>
-            #{result.dot.x}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Y</f:facet>
-            #{result.dot.y}
-        </h:column>
-        <h:column>
-            <f:facet name="header">R</f:facet>
-            #{result.dot.r}
-        </h:column>
-        <h:column>
-            <f:facet name="header">СТАТУС</f:facet>
-            #{result.status}
-        </h:column>
-        <h:column>
-            <f:facet name="header">ВРЕМЯ ВЫПОЛНЕНИЯ</f:facet>
-            #{result.currentTime}
-        </h:column>
-        <h:column>
-            <f:facet name="header">ВРЕМЯ ВЫПОЛНЕНИЯ СКРИПТА</f:facet>
-            #{result.timeOfCalculating} ms
-        </h:column>
-    </h:dataTable>
-
+        <ace:dataTable value="#{pointsDAO.results}" var="result" styleClass="table" id="table">
+            <ace:column>
+                <f:facet name="header">X</f:facet>
+                <h:outputText value="#{result.dot.x}"/>
+            </ace:column>
+            <ace:column>
+                <f:facet name="header">Y</f:facet>
+                <h:outputText value="#{result.dot.y}"/>
+            </ace:column>
+            <ace:column>
+                <f:facet name="header">R</f:facet>
+                <h:outputText value="#{result.dot.r}"/>
+            </ace:column>
+            <ace:column>
+                <f:facet name="header">СТАТУС</f:facet>
+                <h:outputText value="#{result.status}"/>
+            </ace:column>
+            <ace:column>
+                <f:facet name="header">ВРЕМЯ ВЫПОЛНЕНИЯ</f:facet>
+                <h:outputText value="#{result.currentTime}"/>
+            </ace:column>
+            <ace:column>
+                <f:facet name="header">ВРЕМЯ ВЫПОЛНЕНИЯ СКРИПТА</f:facet>
+                <h:outputText value="#{result.timeOfCalculating} ms"/>
+            </ace:column>
+        </ace:dataTable>
+    </h:form>
 
 </h:body>
 </html>

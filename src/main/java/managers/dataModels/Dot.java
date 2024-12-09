@@ -1,9 +1,12 @@
 package managers.dataModels;
 
-public class Dot {
+import java.io.Serializable;
+
+public class Dot implements Serializable {
     private final double x;
     private final double y;
     private final double r;
+
 
     public Dot(double x, double y, double r) {
         this.x = x;

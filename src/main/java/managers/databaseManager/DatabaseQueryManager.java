@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class DatabaseQueryManager {
 
-    public void executeInsertQuery(String query, Object... parameters) throws SQLException {
+    public void executeInsertQuery(String query, Object... parameters) throws SQLException, ClassNotFoundException {
         try (Connection conn = DatabaseConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             for (int i = 0; i < parameters.length; i++) {
@@ -16,7 +16,7 @@ public class DatabaseQueryManager {
         }
     }
 
-    public ResultSet executeSelectQuery(String query, Object... parameters) throws SQLException {
+    public ResultSet executeSelectQuery(String query, Object... parameters) throws SQLException, ClassNotFoundException {
         Connection conn = DatabaseConnectionManager.getConnection();
         PreparedStatement stmt = conn.prepareStatement(query);
         for (int i = 0; i < parameters.length; i++) {

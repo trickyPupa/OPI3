@@ -1,7 +1,7 @@
 const url = "/api";
 let points =[];
 
-function submitForm(event) {
+/*function submitForm(event) {
     event.preventDefault();
     document.querySelectorAll(".error").forEach(el => el.remove());
     const x = document.querySelector('input[type="radio"]:checked');
@@ -25,7 +25,7 @@ function submitForm(event) {
             createError(error);
         });
     }
-}
+}*/
 
 const checkY = (value) => {
     return new Promise((resolve, reject) => {
@@ -55,7 +55,7 @@ const createError = (message) => {
     document.getElementById("coordInputs").prepend(error);
 }
 
-function sendData(x, y, r) {
+/*function sendData(x, y, r) {
     const queryString = new URLSearchParams({
         x: parseFloat(x),
         y: parseFloat(y),
@@ -113,7 +113,7 @@ function addToTable(x, y, r, status, time, data) {
     datatd.textContent = data;
     row.appendChild(datatd);
     tableBody.prepend(row);
-}
+}*/
 
 function drawDot(x, y, r, status) {
     const canvas = document.getElementById('canvas');

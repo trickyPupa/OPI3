@@ -1,27 +1,29 @@
 package managers.databaseManager;
 
-import managers.dataModels.Result;
-import managers.databaseManager.DatabaseConnectionManager;
+import managers.DebugTool;
 
 import java.sql.*;
 
 public class DatabaseCreator {
 
-    public void createTables() throws SQLException {
+    static DebugTool logger = new DebugTool();
+
+    public static void createTables() throws SQLException, ClassNotFoundException {
         String createTableQuery = "CREATE TABLE IF NOT EXISTS results ("
                 + "id SERIAL PRIMARY KEY, "
-                + "x DOUBLE PRECISION NOT NULL, "
-                + "y DOUBLE PRECISION NOT NULL, "
-                + "r DOUBLE PRECISION NOT NULL, "
+                + "x FLOAT NOT NULL, "
+                + "y FLOAT NOT NULL, "
+                + "r FLOAT NOT NULL, "
                 + "status BOOLEAN NOT NULL, "
-                + "current_time TIMESTAMP NOT NULL, "
-                + "time_of_calculating DOUBLE PRECISION NOT NULL"
+                + "currentTime TEXT NOT NULL, "
+                + "time_of_calculating FLOAT NOT NULL"
                 + ")";
 
         try (Connection conn = DatabaseConnectionManager.getConnection();
              Statement stmt = conn.createStatement()) {
             stmt.execute(createTableQuery);
-            System.out.println("Table 'Results' created or already exists.");
+            logger.info("Table 'Results' created or already exists.");
         }
     }
 }
+

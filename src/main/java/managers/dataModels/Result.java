@@ -1,6 +1,8 @@
 package managers.dataModels;
 
-public class Result {
+import java.io.Serializable;
+
+public class Result implements Serializable {
     private final Dot dot;
     private final boolean status;
     private final String currentTime;

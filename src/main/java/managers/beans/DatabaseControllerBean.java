@@ -12,12 +12,11 @@ public class DatabaseControllerBean {
 
     @Inject
     private DatabaseQueryManager queriesDirector;
-
     @Inject
     private ErrorControllerBean errorControllerBean;
 
     public void saveResult(Result result) {
-        String query = "INSERT INTO results (dot_x, dot_y, dot_r, status, current_time, time_of_calculating) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO results (x, y, r, status, currentTime, time_of_calculating) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             queriesDirector.executeInsertQuery(
@@ -29,7 +28,7 @@ public class DatabaseControllerBean {
                     result.getCurrentTime(),
                     result.getTimeOfCalculating()
             );
-        } catch (SQLException e) {
+        } catch (Exception e) {
             errorControllerBean.send500Error("Проблемы с запросом в базу данных!");
         }
     }
@@ -37,7 +36,7 @@ public class DatabaseControllerBean {
     public void executeQuery(String query, Object... parameters) {
         try {
             queriesDirector.executeInsertQuery(query, parameters);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             errorControllerBean.send500Error("Ошибка выполнения запроса.");
         }
     }
