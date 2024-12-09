@@ -29,7 +29,8 @@
             <canvas id="canvas"></canvas>
         </div>
         <div class="inputs" id="coordInputs">
-            <h:form class="form">
+
+            <h:form class="form" id="frm">
                 <div class="x">
                     <p class="x-text">X:</p>
                     <h:selectOneMenu value="#{formControllerBean.selectedX}" class="x-menu">
@@ -46,7 +47,7 @@
                 </div>
 
                 <div class="y-container">
-                    <h:inputText value="#{formControllerBean.selectedY}" id="y" required="true" class=""/>
+                    <h:inputText value="#{formControllerBean.selectedY}" id="y" required="true" class="y-input"/>
                     <p>(-3;5)</p>
                     <label class="text" for="y">Y:</label>
                 </div>
@@ -55,19 +56,23 @@
                     <p class="r-text">R:</p>
                     <ace:sliderEntry id="sliderR"
                                      value="#{formControllerBean.selectedR}"
-                                     min="2"
-                                     max="5"
+                                     min="2" max="5"
                                      length="100px"
-                                     stepPercent="0.25"
-                                     axis="x"/>
+                                     stepPercent="25"
+                                     axis="x"
+                                     onSlide="onSliderMove(event)"
+                                     clickableRail="true"/>
+
                 </div>
 
-                <h:commandButton value="ОТПРАВИТЬ" action="#{formControllerBean.submit}" class="sendDataButton"/>
+                <h:commandButton value="ОТПРАВИТЬ" action="#{formControllerBean.submit}">
+                    <f:ajax execute="@form" render="table"/>
+                </h:commandButton>
             </h:form>
         </div>
     </h:panelGroup>
 
-    <h:dataTable value="#{saver.results}" var="result" styleClass="table" id="table">
+    <h:dataTable value="#{pointsDAO.results}" var="result" styleClass="table" id="table">
         <h:column>
             <f:facet name="header">X</f:facet>
             #{result.dot.x}

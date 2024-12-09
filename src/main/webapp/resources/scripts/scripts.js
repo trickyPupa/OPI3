@@ -6,7 +6,9 @@ function submitForm(event) {
     document.querySelectorAll(".error").forEach(el => el.remove());
     const x = document.querySelector('input[type="radio"]:checked');
     const y = document.getElementById("y");
-    const r = document.querySelector("input[type='checkbox']:checked");
+    const sliderInstance = ice.ace.instance('frm:sliderR');
+    const r = sliderInstance.getValue();
+
     if (!x) {
         createError("x не определен");
     } else if (!r) {
@@ -72,6 +74,7 @@ function sendData(x, y, r) {
             }
         })
         .then(data => {
+            console.log(data);
             addToTable(data.x.toFixed(2), data.y.toFixed(2), data.r, data.status, new Date().toLocaleTimeString(), data.timeOfCalculating);
             drawDot(data.x, data.y, data.r, data.status);
             points.push({x: data.x, y: data.y, r: data.r, status: data.status});
@@ -125,7 +128,7 @@ function drawDot(x, y, r, status) {
     ctx.fillStyle = status ? '#A5D6A7' : '#E57373';
 
     ctx.beginPath();
-    ctx.arc(pixelX, pixelY, 5, 0, 2 * Math.PI); // Радиус точки 5 пикселей
+    ctx.arc(pixelX, pixelY, 5, 0, 2 * Math.PI);
     ctx.fill();
     ctx.closePath();
 }
@@ -134,11 +137,12 @@ canvas.addEventListener("click", (event) => {
     document.querySelectorAll(".error").forEach(el => el.remove());
     const x = (event.offsetX - 200) / (400 / 12);
     const y = (200 - event.offsetY) / (400 / 12);
-    const r = document.querySelector("input[type='checkbox']:checked");
+    const sliderInstance = ice.ace.instance('frm:sliderR');
+    const r = sliderInstance.getValue();
     if (r == null) {
         createError("r не выбран");
     } else {
-        sendData(x.toFixed(2), y.toFixed(2), r.value);
+        sendData(x.toFixed(2), y.toFixed(2), r);
     }
 });
 

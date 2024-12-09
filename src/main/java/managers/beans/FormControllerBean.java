@@ -46,21 +46,17 @@ public class FormControllerBean {
     }
 
     public void submit() {
-        System.out.println("Submitted values:");
-        System.out.println("X: " + selectedX);
-        System.out.println("Y: " + selectedY);
-        System.out.println("R: " + selectedR);
         processFormData();
     }
 
 
     private void processFormData() {
         try {
-            controller.handleRequest(new Dot(
-                    Double.parseDouble(selectedX),
-                    Double.parseDouble(selectedY),
-                    Double.parseDouble(selectedR))
-            );
+            double xValue = Double.parseDouble(selectedX);
+            double yValue = Double.parseDouble(selectedY);
+            double rValue = Double.parseDouble(selectedR);
+            Dot dot = new Dot(xValue, yValue, rValue);
+            controller.handleRequest(dot);
         }catch (NumberFormatException e) {
             error.send400Error("Wrong parameters");
         }

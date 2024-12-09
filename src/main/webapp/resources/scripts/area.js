@@ -51,7 +51,7 @@ function drawCircle(r) {
     ctx.beginPath();
     ctx.moveTo(startX, startY);
     ctx.fillStyle = fillStyle;
-    ctx.arc(startX, startY, r*oneCell, Math.PI * 0.5, Math.PI, false);
+    ctx.arc(startX, startY, r*oneCell, 0, Math.PI * 0.5, false);
     ctx.closePath();
     ctx.fill();
 }
@@ -60,7 +60,7 @@ function drawRect(r) {
     ctx.beginPath();
     ctx.moveTo(startX, startY);
     ctx.fillStyle = fillStyle;
-    ctx.rect(startX, startY, -r*halfCell, -r*oneCell);
+    ctx.rect(startX, startY, r*oneCell, -r*oneCell);
     ctx.closePath();
     ctx.fill();
 
@@ -70,8 +70,8 @@ function drawTriangle(r) {
     ctx.beginPath();
     ctx.moveTo(startX, startY);
     ctx.fillStyle = fillStyle;
-    ctx.lineTo(startX + r*halfCell, startY);
-    ctx.lineTo(startX, startY - r*halfCell);
+    ctx.lineTo(startX - r*halfCell, startY);
+    ctx.lineTo(startX, startY + r*halfCell);
     ctx.closePath();
     ctx.fill();
 }
@@ -160,21 +160,20 @@ const drawElementsRelatedToR = (r) => {
     redrawPoints(r);
 }
 
-const R = document.querySelectorAll('input[type="checkbox"]');
+const sliderInstance = ice.ace.instance('frm:sliderR');
+const R = sliderInstance.getValue();
 
-R.forEach((r) => r.addEventListener('click', () => {
-    R.forEach((checkbox) => {
-        if (checkbox !== r) {
-            checkbox.checked = false;
-        }
-    });
+function onSliderMove(event) {
+    const sliderInstance = ice.ace.instance('frm:sliderR');
+    const r = sliderInstance.getValue();
+    console.log("Текущее значение R:", r);
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawGrid();
-    if (r.checked) {
-        drawElementsRelatedToR(r.value);
-    }
+    drawElementsRelatedToR(r);
     drawAxis();
-}));
+}
+
 drawGrid();
 drawAxis();
 

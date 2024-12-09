@@ -1,6 +1,7 @@
 package managers.beans;
 
 import managers.AreaCheckerService;
+import managers.PointsDAO;
 import managers.dataModels.Dot;
 import managers.IllegalParameterException;
 import managers.dataModels.Result;
@@ -18,10 +19,10 @@ public class AreaCheckerBean {
     @Inject
     private ErrorControllerBean errorControllerBean;
     @Inject
-    private SessionSaverForPointsBean saver;
+    private PointsDAO saver;
 
     @Inject
-    private DataBaseControllerBean db;
+    private DatabaseControllerBean db;
 
     private Result result;
 
@@ -30,6 +31,7 @@ public class AreaCheckerBean {
             result = areaCheckService.processDot(dot);
             saver.addResult(result);
             db.saveResult(result);
+
         } catch (IllegalParameterException e) {
             errorControllerBean.send400Error("бредик не пишем, проверьте значения");
         }

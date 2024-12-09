@@ -86,6 +86,10 @@ canvas {
     padding: 10px;
 }
 
+.r-text{
+    margin-right: 10px;
+}
+
 .x label, .r label{
     margin: 10px;
 }
@@ -108,7 +112,7 @@ canvas {
     padding: 10px 10px 10px 30px;
 }
 
-.y-container label {
+.y-container label.text {
     display: flex;
     align-items: center;
     justify-content: center;
