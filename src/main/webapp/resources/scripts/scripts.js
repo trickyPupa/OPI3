@@ -1,5 +1,5 @@
 const url = "/api";
-let points =[];
+let points = [];
 
 /*function submitForm(event) {
     event.preventDefault();
@@ -145,5 +145,52 @@ canvas.addEventListener("click", (event) => {
         sendData(x.toFixed(2), y.toFixed(2), r);
     }
 });
+
+function parsePartialResponse(response) {
+    const partialResponse = response.querySelector('partial-response');
+    if (!partialResponse) {
+        throw new Error("Не удалось найти <partial-response> в ответе.");
+    }
+
+    const updateSection = partialResponse.querySelector('update[id="frm:table_body"]');
+    if (!updateSection) {
+        throw new Error("Не удалось найти секцию <update> с id='frm:table_body'.");
+    }
+
+    const cdataContent = updateSection.textContent.trim();
+
+    const parser = new DOMParser();
+    const tableDocument = parser.parseFromString(cdataContent, 'text/html');
+
+    const rows = tableDocument.querySelectorAll('tr');
+
+    const result = Array.from(rows).map(row => {
+        const cells = row.querySelectorAll('td span');
+        return {
+            x: parseFloat(cells[0]?.textContent || '0'),
+            y: parseFloat(cells[1]?.textContent || '0'),
+            r: parseFloat(cells[2]?.textContent || '0'),
+        };
+    });
+
+    console.log(result);
+
+}
+
+function handleResponse(data) {
+    console.log(data);
+    parsePartialResponse(data);
+    console.log(points);
+}
+
+const validateY = () => {
+    const yField = document.getElementById('frm:y');
+    const value = parseFloat(yField.value);
+    console.log(value);
+    if (value < -5 || value > 5) {
+       createError("Y is out of range")
+    }
+}
+
 
 

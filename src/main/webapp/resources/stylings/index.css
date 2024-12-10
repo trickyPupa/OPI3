@@ -155,11 +155,10 @@ canvas {
     top: 0;
     left: 0;
     color: var(--button-background);
-    transform: translateX(-125%);
     opacity: 1;
 }
 
-.sendDataButton{
+.submit-button{
     display: flex;
     align-items: center;
     justify-content: center;

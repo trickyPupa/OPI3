@@ -13,7 +13,6 @@ public class DebugTool {
     }
 
     public void warning(String warning) {
-        Logger logger = Logger.getLogger("debugtool");
         logger.log(Level.WARNING, warning);
     }
 

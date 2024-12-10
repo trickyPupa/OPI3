@@ -14,9 +14,9 @@ public class AreaCheckerService {
     @Inject
     private AreaChecker areaChecker;
 
-    private DebugTool log = new DebugTool();
+    private final DebugTool log = new DebugTool();
 
-    public Result processDot(Dot dot) throws IllegalParameterException{
+    public Result processDot(Dot dot) throws IllegalParameterException {
         long start = System.nanoTime();
         boolean status = areaChecker.checkSpot(dot.getX(), dot.getY(), dot.getR());
         double timeOfCalculating = (double) (System.nanoTime() - start) / 1_000_000;

@@ -30,8 +30,6 @@
                 <canvas id="canvas"></canvas>
             </div>
             <div class="inputs" id="coordInputs">
-
-
                 <div class="x">
                     <p class="x-text">X:</p>
                     <h:selectOneMenu value="#{formControllerBean.selectedX}" class="x-menu">
@@ -48,9 +46,9 @@
                 </div>
 
                 <div class="y-container">
-                    <h:inputText value="#{formControllerBean.selectedY}" id="y" required="true" class="y-input"/>
-                    <p>(-3;5)</p>
+                    <h:inputText value="#{formControllerBean.selectedY}" id="y" class="y-input" onchange="validateY()"/>
                     <label class="text">Y:</label>
+                    <p>(-5;5)</p>
                 </div>
 
                 <div class="r">
@@ -65,9 +63,10 @@
                                      clickableRail="true"/>
 
                 </div>
-
-                <h:commandButton value="ОТПРАВИТЬ" action="#{formControllerBean.submit}">
-                    <ace:ajax execute="@form" render="frm:table"/>
+                <ace:messages id="message" globalOnly="true" showDetail="true" showSummary="true" />
+                <h:commandButton value="ОТПРАВИТЬ" class="submit-button"
+                                 action="#{formControllerBean.submit}" id="submit-button" >
+                    <ace:ajax onSuccess="handleResponse(data)" execute="@form" render="frm:table frm:message" />
                 </h:commandButton>
             </div>
         </h:panelGroup>
@@ -98,6 +97,7 @@
                 <h:outputText value="#{result.timeOfCalculating} ms"/>
             </ace:column>
         </ace:dataTable>
+
     </h:form>
 
 </h:body>

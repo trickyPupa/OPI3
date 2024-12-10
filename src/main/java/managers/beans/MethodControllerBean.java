@@ -1,5 +1,6 @@
 package managers.beans;
 
+import managers.ErrorController;
 import managers.dataModels.Dot;
 
 import javax.enterprise.context.RequestScoped;
@@ -13,15 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 public class MethodControllerBean {
 
     @Inject
-    private AreaCheckerBean checkerBean;
-    @Inject
-    private ErrorControllerBean error;
+    private DataSaverBean dataSaverBean;
+
 
     public void handleRequest(Dot dot) {
         if (checkMethod()) {
-            checkerBean.checkArea(dot);
+            dataSaverBean.saveData(dot);
         } else {
-            error.send405Error("Method Not Allowed");
+            ErrorController.send405Error("Method Not Allowed");
         }
     }
 

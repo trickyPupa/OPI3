@@ -2,17 +2,18 @@ package managers.beans;
 
 
 import managers.DebugTool;
+import managers.ErrorController;
 import managers.dataModels.Dot;
 import managers.databaseManager.DatabaseCreator;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.sql.SQLException;
-import java.util.logging.Logger;
+import java.util.Objects;
 
 @Named("formControllerBean")
 @RequestScoped
@@ -20,14 +21,18 @@ public class FormControllerBean implements Serializable {
 
     @Inject
     private  MethodControllerBean controller;
-    @Inject
-    private  ErrorControllerBean error;
 
     private final DebugTool logger = new DebugTool();
 
     private String selectedX;
     private String selectedY;
     private String selectedR;
+
+    boolean validated;
+
+    double xValue;
+    double yValue;
+    double rValue;
 
     public String getSelectedX() {
         return selectedX;
@@ -53,9 +58,6 @@ public class FormControllerBean implements Serializable {
         this.selectedR = selectedR;
     }
 
-    public void submit() {
-        processFormData();
-    }
 
     @PostConstruct
     public void init() {
@@ -67,15 +69,32 @@ public class FormControllerBean implements Serializable {
         }
     }
 
+    public void submit() {
+        if (validate(selectedX, selectedY, selectedR)) processFormData();
+    }
+
+    private boolean validate(String selectedX, String selectedY, String selectedR) {
+        try {
+            if (selectedX == null || selectedY == null || selectedR == null) {
+                return false;
+            }
+
+            this.xValue = Double.parseDouble(selectedX);
+            this.yValue = Double.parseDouble(selectedY);
+            this.rValue = Double.parseDouble(selectedR);
+
+            return xValue >= -4 && xValue <= 4 && yValue >= -5 && yValue <= 5 && rValue >= 2 && rValue <= 5;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    };
+
     private void processFormData() {
         try {
-            double xValue = Double.parseDouble(selectedX);
-            double yValue = Double.parseDouble(selectedY);
-            double rValue = Double.parseDouble(selectedR);
             Dot dot = new Dot(xValue, yValue, rValue);
             controller.handleRequest(dot);
         }catch (NumberFormatException e) {
-            error.send400Error("Wrong parameters");
+            ErrorController.send400Error("Wrong parameters");
         }
     }
 }

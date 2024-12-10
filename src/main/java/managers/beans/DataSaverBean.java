@@ -1,8 +1,6 @@
 package managers.beans;
 
-import managers.AreaCheckerService;
-import managers.IllegalParameterException;
-import managers.PointsDAO;
+import managers.*;
 import managers.dataModels.Dot;
 import managers.dataModels.Result;
 
@@ -12,12 +10,10 @@ import javax.enterprise.context.RequestScoped;
 
 @Named("areaCheckerBean")
 @RequestScoped
-public class AreaCheckerBean {
+public class DataSaverBean {
 
     @Inject
     private AreaCheckerService areaCheckService;
-    @Inject
-    private ErrorControllerBean errorControllerBean;
     @Inject
     private PointsDAO saver;
     @Inject
@@ -25,13 +21,16 @@ public class AreaCheckerBean {
 
     private Result result;
 
-    public void checkArea(Dot dot) {
+    DebugTool log = new DebugTool();
+
+    public void saveData(Dot dot)  {
         try {
-            result = areaCheckService.processDot(dot);
-            saver.addResult(result);
-            db.saveResult(result);
-        }catch (IllegalParameterException e) {
-            errorControllerBean.send400Error(e.getMessage());
+        result = areaCheckService.processDot(dot);
+        saver.addResult(result);
+        db.saveResult(result);
+        log.info("Data saved!");
+        } catch (IllegalParameterException e) {
+            ErrorController.send400Error("Something went wrong");
         }
     }
 

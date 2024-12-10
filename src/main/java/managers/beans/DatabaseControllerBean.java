@@ -1,19 +1,19 @@
 package managers.beans;
 
+import managers.ErrorController;
 import managers.dataModels.Result;
 import managers.databaseManager.DatabaseQueryManager;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.sql.SQLException;
 
 @Named
 public class DatabaseControllerBean {
 
     @Inject
     private DatabaseQueryManager queriesDirector;
-    @Inject
-    private ErrorControllerBean errorControllerBean;
+
+
 
     public void saveResult(Result result) {
         String query = "INSERT INTO results (x, y, r, status, currentTime, time_of_calculating) VALUES (?, ?, ?, ?, ?, ?)";
@@ -29,7 +29,7 @@ public class DatabaseControllerBean {
                     result.getTimeOfCalculating()
             );
         } catch (Exception e) {
-            errorControllerBean.send500Error("Проблемы с запросом в базу данных!");
+            ErrorController.send500Error("Проблемы с запросом в базу данных!");
         }
     }
 
@@ -37,7 +37,7 @@ public class DatabaseControllerBean {
         try {
             queriesDirector.executeInsertQuery(query, parameters);
         } catch (Exception e) {
-            errorControllerBean.send500Error("Ошибка выполнения запроса.");
+            ErrorController.send500Error("Ошибка выполнения запроса.");
         }
     }
 }
