@@ -135,106 +135,89 @@ function drawDot(x, y, r, status) {
 
 canvas.addEventListener("click", (event) => {
     document.querySelectorAll(".error").forEach(el => el.remove());
-    const x = (event.offsetX - 200) / (400 / 12);
-    const y = (200 - event.offsetY) / (400 / 12);
+
+    const x = (event.offsetX - canvas.width / 2) / (canvas.width / 12);
+    const y = (canvas.height / 2 - event.offsetY) / (canvas.height / 12);
     const sliderInstance = ice.ace.instance('frm:sliderR');
-    const r = sliderInstance.getValue();
-    if (r == null) {
-        createError("r не выбран");
-    } else {
-        sendData(x.toFixed(2), y.toFixed(2), r);
+    const r = parseFloat(sliderInstance.getValue());
+    if (validate(x, y, r)) {
+        setTimeout(() => updatePointsFromTable(), 100);
     }
 });
 
-function parsePartialResponse(response) {
-    const partialResponse = response.querySelector('partial-response');
-    if (!partialResponse) {
-        throw new Error("Не удалось найти <partial-response> в ответе.");
-    }
-
-    const updateSection = partialResponse.querySelector('update[id="frm:table_body"]');
-    if (!updateSection) {
-        throw new Error("Не удалось найти секцию <update> с id='frm:table_body'.");
-    }
-
-    const cdataContent = updateSection.textContent.trim();
-
-    const parser = new DOMParser();
-    const tableDocument = parser.parseFromString(cdataContent, 'text/html');
-
-    const rows = tableDocument.querySelectorAll('tr');
-
-    const result = Array.from(rows).map(row => {
-        const cells = row.querySelectorAll('td span');
-        return {
-            x: parseFloat(cells[0]?.textContent || '0'),
-            y: parseFloat(cells[1]?.textContent || '0'),
-            r: parseFloat(cells[2]?.textContent || '0'),
-        };
-    });
-
-    console.log(result);
-
-}
-
-function handleResponse(data) {
-    console.log(data);
-    parsePartialResponse(data);
-    console.log(points);
-}
 
 
-const validate = () => {
-    document.querySelectorAll(".error").forEach((e)=>e.remove());
-    const x = document.getElementById('frm:xSelector')
-    const y = document.getElementById('frm:yInput');
+
+const handleSubmit = () => {
+    const xSelector = document.getElementById("frm:xSelector");
+    const yInput = document.getElementById("frm:yInput");
     const sliderInstance = ice.ace.instance('frm:sliderR');
-    const r = sliderInstance.getValue();
-    const xValue = parseFloat(x.value);
-    const yValue = parseFloat(y.value);
-    const rValue = parseFloat(r);
+
+    const xValue = parseFloat(xSelector.value);
+    const yValue = parseFloat(yInput.value);
+    const rValue = parseFloat(sliderInstance.getValue());
+
+    if (validate(xValue, yValue, rValue)) {
+        setTimeout(() => updatePointsFromTable(), 100);
+    }
+};
+
+
+
+const validate = (xValue, yValue, rValue) => {
+    document.querySelectorAll(".error").forEach(e => e.remove());
+
     const hiddenX = document.getElementById("hiddenForm:xInput");
     const hiddenY = document.getElementById("hiddenForm:yInput");
     const hiddenR = document.getElementById("hiddenForm:rInput");
-    if (xValue < -2|| xValue > 2){
+
+    if (xValue < -2 || xValue > 2) {
         createError("X is out of range");
-        return;
+        return false;
     }
     if (yValue < -5 || yValue > 5) {
-       createError("Y is out of range");
-       return;
+        createError("Y is out of range");
+        return false;
     }
     if (rValue < 2 || rValue > 5) {
         createError("R is out of range");
-        return;
+        return false;
     }
-    console.log(`${xValue} + ${yValue} +  ${rValue}`)
+
+    console.log(`Validated values: X=${xValue}, Y=${yValue}, R=${rValue}`);
     hiddenX.value = xValue;
     hiddenY.value = yValue;
     hiddenR.value = rValue;
     document.getElementById("hiddenForm:submit-button").click();
 
-    points.push(
-        {
-            x: xValue,
-            y: yValue,
-            r: rValue
-        }
-    );
-
-    drawDot(xValue, yValue, rValue, false);
-}
-
-loadDots = () => {
-    if (points.length) {
-        const lastR = points[points.length - 1].r;
-        console.log(lastR);
-        drawElementsRelatedToR(lastR);
-        redrawPoints(lastR);
-    }
+    return true;
 };
 
-loadDots();
 
+const updatePointsFromTable = () => {
+    const table = document.getElementById("frm:table");
+    const rows = table.querySelectorAll("tbody tr");
+    const points = [];
 
+    rows.forEach(row => {
+        const cells = row.querySelectorAll("td");
+        const x = parseFloat(cells[0].textContent.trim());
+        const y = parseFloat(cells[1].textContent.trim());
+        const r = parseFloat(cells[2].textContent.trim());
+        const status = cells[3].textContent.trim().toLowerCase() === 'true';
+        points.push({ x, y, r, status });
+    });
 
+    sessionStorage.setItem('points', JSON.stringify(points));
+    console.log("Updated points from table:", points);
+
+    const sliderInstance = ice.ace.instance('frm:sliderR');
+    const currentR = parseFloat(sliderInstance.getValue());
+    redrawPoints(currentR);
+
+    return points;
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    updatePointsFromTable();
+});

@@ -63,7 +63,7 @@
                                      value="#{controller.selectedR}"
                                      onSlideEnd="onSliderMove(event)"
                                      clickableRail="true"/>
-                    <h:commandButton value="ОТПРАВИТЬ" type="button" class="submit-button" onclick="validate()"/>
+                    <h:commandButton value="ОТПРАВИТЬ" type="button" class="submit-button" onclick="handleSubmit()"/>
                 </div>
 
                 <ace:messages id="message" globalOnly="true" showDetail="true" showSummary="true" />
@@ -104,7 +104,7 @@
         <h:inputHidden id="rInput" value="#{controller.selectedR}" />
 
         <h:commandButton value="ОТПРАВИТЬ" style="display: none" action="#{controller.submit}" id="submit-button">
-            <ace:ajax onSuccess="handleResponse(data)" execute="@form" render="frm:table frm:message" />
+            <ace:ajax execute="@form" render="frm:table frm:message" />
         </h:commandButton>
     </h:form>
 

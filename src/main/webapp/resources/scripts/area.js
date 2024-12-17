@@ -138,19 +138,48 @@ function drawCoords(r) {
     ctx.closePath();
     ctx.stroke();
 }
+
 function redrawPoints(r) {
+    const pointsData = sessionStorage.getItem('points');
+    if (!pointsData) {
+        console.log("No points to redraw");
+        return;
+    }
+
+    const points = JSON.parse(pointsData);
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
+
     points.forEach(point => {
-        const pixelX = startX + (point.x * (canvas.width / 12)/point.r*r);
-        const pixelY = startY - (point.y * (canvas.height / 12)/point.r*r);
+        const pixelX = canvas.width / 2 + (point.x * (canvas.width / 12) / point.r) * r;
+        const pixelY = canvas.height / 2 - (point.y * (canvas.height / 12) / point.r) * r;
+
         ctx.fillStyle = point.status ? '#A5D6A7' : '#E57373';
         ctx.beginPath();
         ctx.arc(pixelX, pixelY, 5, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
     });
+
+    console.log(`Redrawn points for R=${r}`);
 }
+
+
+
+function loadDots() {
+    const pointsData = sessionStorage.getItem('points');
+    if (pointsData && pointsData.length > 0) {
+        const points = JSON.parse(pointsData);
+        const lastR = points[points.length - 1].r;
+        console.log(`Last R from points: ${lastR}`);
+        drawElementsRelatedToR(lastR);
+        redrawPoints(lastR);
+        drawAxis()
+    } else {
+        console.log("No points in session storage");
+    }
+}
+
 
 const drawElementsRelatedToR = (r) => {
     drawCircle(r);
@@ -177,5 +206,4 @@ function onSliderMove(event) {
 
 drawGrid();
 drawAxis();
-
-
+loadDots();
