@@ -9,30 +9,26 @@ import managers.databaseManager.DatabaseCreator;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.EditableValueHolder;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Named("formControllerBean")
+@Named("controller")
 @RequestScoped
 public class FormControllerBean implements Serializable {
 
     @Inject
-    private  MethodControllerBean controller;
+    private MethodControllerBean controller;
 
     private final DebugTool logger = new DebugTool();
 
     private String selectedX;
     private String selectedY;
     private String selectedR;
-
-    boolean validated;
-
-    double xValue;
-    double yValue;
-    double rValue;
 
     public String getSelectedX() {
         return selectedX;
@@ -58,7 +54,6 @@ public class FormControllerBean implements Serializable {
         this.selectedR = selectedR;
     }
 
-
     @PostConstruct
     public void init() {
         try {
@@ -69,32 +64,59 @@ public class FormControllerBean implements Serializable {
         }
     }
 
-    public void submit() {
-        if (validate(selectedX, selectedY, selectedR)) processFormData();
+    public void resetFormState() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        UIComponent root = facesContext.getViewRoot().findComponent("frm");
+
+        if (root != null) {
+            resetComponentState(root);
+        }
     }
 
-    private boolean validate(String selectedX, String selectedY, String selectedR) {
+    private void resetComponentState(UIComponent component) {
+        if (component instanceof EditableValueHolder) {
+            EditableValueHolder input = (EditableValueHolder) component;
+            input.resetValue();
+            input.setValid(true);
+
+        }
+        for (UIComponent child : component.getChildren()) {
+            resetComponentState(child);
+        }
+    }
+
+
+    public void submit() {
+        resetFormState();
+        FacesContext context = FacesContext.getCurrentInstance();
+
         try {
-            if (selectedX == null || selectedY == null || selectedR == null) {
-                return false;
+            // Проверяем значения
+            double xValue = Double.parseDouble(selectedX);
+            double yValue = Double.parseDouble(selectedY);
+            double rValue = Double.parseDouble(selectedR);
+
+            if (xValue < -4 || xValue > 4) {
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "X must be between -4 and 4.", null));
+                return;
             }
 
-            this.xValue = Double.parseDouble(selectedX);
-            this.yValue = Double.parseDouble(selectedY);
-            this.rValue = Double.parseDouble(selectedR);
+            if (yValue < -5 || yValue > 5) {
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Y must be between -5 and 5.", null));
+                return;
+            }
 
-            return xValue >= -4 && xValue <= 4 && yValue >= -5 && yValue <= 5 && rValue >= 2 && rValue <= 5;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    };
+            if (rValue < 2 || rValue > 5) {
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "R must be between 2 and 5.", null));
+                return;
+            }
 
-    private void processFormData() {
-        try {
             Dot dot = new Dot(xValue, yValue, rValue);
             controller.handleRequest(dot);
-        }catch (NumberFormatException e) {
-            ErrorController.send400Error("Wrong parameters");
+        } catch (NumberFormatException e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid input format. Please enter numbers.", null));
         }
     }
+
+
 }

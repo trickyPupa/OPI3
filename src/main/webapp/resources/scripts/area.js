@@ -171,6 +171,7 @@ function onSliderMove(event) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawGrid();
     drawElementsRelatedToR(r);
+    redrawPoints(r)
     drawAxis();
 }
 

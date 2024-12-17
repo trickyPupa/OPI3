@@ -183,14 +183,58 @@ function handleResponse(data) {
     console.log(points);
 }
 
-const validateY = () => {
-    const yField = document.getElementById('frm:y');
-    const value = parseFloat(yField.value);
-    console.log(value);
-    if (value < -5 || value > 5) {
-       createError("Y is out of range")
+
+const validate = () => {
+    document.querySelectorAll(".error").forEach((e)=>e.remove());
+    const x = document.getElementById('frm:xSelector')
+    const y = document.getElementById('frm:yInput');
+    const sliderInstance = ice.ace.instance('frm:sliderR');
+    const r = sliderInstance.getValue();
+    const xValue = parseFloat(x.value);
+    const yValue = parseFloat(y.value);
+    const rValue = parseFloat(r);
+    const hiddenX = document.getElementById("hiddenForm:xInput");
+    const hiddenY = document.getElementById("hiddenForm:yInput");
+    const hiddenR = document.getElementById("hiddenForm:rInput");
+    if (xValue < -2|| xValue > 2){
+        createError("X is out of range");
+        return;
     }
+    if (yValue < -5 || yValue > 5) {
+       createError("Y is out of range");
+       return;
+    }
+    if (rValue < 2 || rValue > 5) {
+        createError("R is out of range");
+        return;
+    }
+    console.log(`${xValue} + ${yValue} +  ${rValue}`)
+    hiddenX.value = xValue;
+    hiddenY.value = yValue;
+    hiddenR.value = rValue;
+    document.getElementById("hiddenForm:submit-button").click();
+
+    points.push(
+        {
+            x: xValue,
+            y: yValue,
+            r: rValue
+        }
+    );
+
+    drawDot(xValue, yValue, rValue, false);
 }
+
+loadDots = () => {
+    if (points.length) {
+        const lastR = points[points.length - 1].r;
+        console.log(lastR);
+        drawElementsRelatedToR(lastR);
+        redrawPoints(lastR);
+    }
+};
+
+loadDots();
 
 
 

@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
-@Named("controller")
+@Named("methodController")
 @RequestScoped
 public class MethodControllerBean {
 
