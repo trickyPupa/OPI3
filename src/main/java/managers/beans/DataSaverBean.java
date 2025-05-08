@@ -15,7 +15,7 @@ public class DataSaverBean {
     @Inject
     private AreaCheckerService areaCheckService;
     @Inject
-    private PointsDAO saver;
+    private PointsRepository saver;
     @Inject
     private DatabaseControllerBean db;
 
@@ -24,14 +24,10 @@ public class DataSaverBean {
     DebugTool log = new DebugTool();
 
     public void saveData(Dot dot)  {
-        try {
         result = areaCheckService.processDot(dot);
         saver.addResult(result);
         db.saveResult(result);
         log.info("Data saved!");
-        } catch (IllegalParameterException e) {
-            ErrorController.send400Error("Something went wrong");
-        }
     }
 
     public Result getResult() {

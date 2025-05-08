@@ -20,10 +20,10 @@
     </h:outputScript>
 
     <h:panelGroup layout="block" styleClass="header">
-        <h:link value="НАЗАД" outcome="goToStartPage"/>
+        <h:link value="НАЗАД" outcome="goToStartPage" style="margin-right: auto; color: var(--button-background)"/>
 
         <div class="name">
-            МАМОНТОВ АЛЕКСАНДР
+            naku0
         </div>
     </h:panelGroup>
 
@@ -71,7 +71,7 @@
             </div>
         </h:panelGroup>
 
-        <ace:dataTable value="#{pointsDAO.results}" var="result" styleClass="table" id="table">
+        <ace:dataTable value="#{pointsRep.results}" var="result" styleClass="table" id="table">
             <ace:column>
                 <f:facet name="header">X</f:facet>
                 <h:outputText value="#{result.dot.x}"/>

@@ -1,8 +1,6 @@
 package managers.beans;
 
-
 import managers.DebugTool;
-import managers.ErrorController;
 import managers.dataModels.Dot;
 import managers.databaseManager.DatabaseCreator;
 
@@ -15,7 +13,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Named("controller")
 @RequestScoped
@@ -91,7 +88,6 @@ public class FormControllerBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
 
         try {
-            // Проверяем значения
             double xValue = Double.parseDouble(selectedX);
             double yValue = Double.parseDouble(selectedY);
             double rValue = Double.parseDouble(selectedR);

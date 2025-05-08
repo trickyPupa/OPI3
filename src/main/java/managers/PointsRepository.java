@@ -2,17 +2,15 @@ package managers;
 
 import managers.dataModels.Result;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-@Named("pointsDAO")
+@Named("pointsRep")
 @SessionScoped
-public class PointsDAO implements Serializable {
+public class PointsRepository implements Serializable {
 
 
     private final List<Result> results = new CopyOnWriteArrayList<>();

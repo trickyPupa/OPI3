@@ -20,8 +20,6 @@ public class MethodControllerBean {
     public void handleRequest(Dot dot) {
         if (checkMethod()) {
             dataSaverBean.saveData(dot);
-        } else {
-            ErrorController.send405Error("Method Not Allowed");
         }
     }
 

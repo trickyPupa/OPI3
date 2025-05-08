@@ -145,7 +145,6 @@ function redrawPoints(r) {
         console.log("No points to redraw");
         return;
     }
-
     const points = JSON.parse(pointsData);
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
@@ -207,3 +206,4 @@ function onSliderMove(event) {
 drawGrid();
 drawAxis();
 loadDots();
+//drawElementsRelatedToR(2);

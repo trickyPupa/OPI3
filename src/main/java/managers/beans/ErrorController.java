@@ -30,6 +30,6 @@ public class ErrorController {
         facesContext.getExternalContext().setResponseStatus(500);
         FacesMessage facesMessage = new FacesMessage(
                 FacesMessage.SEVERITY_ERROR, "Internal Server Error", message);
-       
+
     }
 }

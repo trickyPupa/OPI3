@@ -141,7 +141,7 @@ canvas.addEventListener("click", (event) => {
     const sliderInstance = ice.ace.instance('frm:sliderR');
     const r = parseFloat(sliderInstance.getValue());
     if (validate(x, y, r)) {
-        setTimeout(() => updatePointsFromTable(), 100);
+        setTimeout(() => updatePointsFromTable(), 500);
     }
 });
 
@@ -158,7 +158,7 @@ const handleSubmit = () => {
     const rValue = parseFloat(sliderInstance.getValue());
 
     if (validate(xValue, yValue, rValue)) {
-        setTimeout(() => updatePointsFromTable(), 100);
+        setTimeout(() => updatePointsFromTable(), 1000);
     }
 };
 
@@ -214,10 +214,7 @@ const updatePointsFromTable = () => {
     const sliderInstance = ice.ace.instance('frm:sliderR');
     const currentR = parseFloat(sliderInstance.getValue());
     redrawPoints(currentR);
-
-    return points;
 };
-
 document.addEventListener('DOMContentLoaded', () => {
     updatePointsFromTable();
 });

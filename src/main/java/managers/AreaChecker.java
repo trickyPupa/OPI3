@@ -10,29 +10,21 @@ public class AreaChecker {
 
     DebugTool log = new DebugTool();
 
-    @Inject
-    private ErrorController err;
 
-    public boolean checkSpot(double x, double y, double r) throws IllegalParameterException {
+    public boolean checkSpot(double x, double y, double r) {
         return checkAxis(x, y, r);
     }
 
-    private boolean checkAxis(double x, double y, double r) throws IllegalParameterException {
-        if (!(x >= -2 && x <= 2 && y >= -5 && y <= 5 && r >= 2 && r <= 5)) {
-            System.out.println("Wrong parameters");
-            throw new IllegalParameterException("Wrong parameters");
-        }
-        else{
-                if (x * r >= 0 && y * r >= 0) {
-                    return checkRectangle(x, y, r);
-                } else if (x * r <= 0 && y * r >= 0) {
-                    return false;
-                } else if (x * r <= 0 && y * r <= 0) {
-                    return checkTriangle(x, y, r);
-                } else if (x * r >= 0 && y * r <= 0) {
-                    return checkCircle(x, y, r);
-                } else return x == 0 && y == 0;
-            }
+    private boolean checkAxis(double x, double y, double r) {
+        if (x * r >= 0 && y * r >= 0) {
+            return checkRectangle(x, y, r);
+        } else if (x * r <= 0 && y * r >= 0) {
+            return false;
+        } else if (x * r <= 0 && y * r <= 0) {
+            return checkTriangle(x, y, r);
+        } else if (x * r >= 0 && y * r <= 0) {
+            return checkCircle(x, y, r);
+        } else return x == 0 && y == 0;
     }
 
     private boolean checkTriangle(double x, double y, double r) {
