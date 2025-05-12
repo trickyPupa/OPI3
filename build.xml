@@ -10,7 +10,7 @@
         <fileset dir="${lib.dir}" includes="**/*.jar" />
     </path>
 
-    <target name="resolve">
+    <target name="skachat">
         <exec executable="mvn.cmd" failonerror="true">
             <env key="${env.PATH}" value="${env.PATH}"/>
             <arg value="dependency:copy-dependencies"/>
@@ -22,7 +22,7 @@
         <delete dir="${build.dir}"/>
     </target>
 
-    <target name="compile" depends="resolve">
+    <target name="compile" depends="skachat">
         <mkdir dir="${classes.dir}"/>
         <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="project.classpath"/>
         <copy todir="${classes.dir}">
