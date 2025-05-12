@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="1" failures="0" hostname="toaster" name="AreaCheckerTest" skipped="0" tests="1" time="0.0" timestamp="2025-05-12T11:41:31">
+  <properties>
+    <property name="java.vendor" value="Amazon.com Inc." />
+    <property name="lib.dir" value="target/lib" />
+    <property name="env.IDEA_INITIAL_DIRECTORY" value="C:\Users\TEAna\OneDrive\Рабочий стол" />
+    <property name="env.USERDOMAIN_ROAMINGPROFILE" value="TOASTER" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="env.PROMPT" value="$P$G" />
+    <property name="env.DriverData" value="C:\Windows\System32\Drivers\DriverData" />
+    <property name="os.name" value="Windows 11" />
+    <property name="sun.boot.class.path" value="C:\Users\TEAna\.jdks\corretto-1.8.0_432\jre\lib\resources.jar;C:\Users\TEAna\.jdks\corretto-1.8.0_432\jre\lib\rt.jar;C:\Users\TEAna\.jdks\corretto-1.8.0_432\jre\lib\sunrsasign.jar;C:\Users\TEAna\.jdks\corretto-1.8.0_432\jre\lib\jsse.jar;C:\Users\TEAna\.jdks\corretto-1.8.0_432\jre\lib\jce.jar;C:\Users\TEAna\.jdks\corretto-1.8.0_432\jre\lib\charsets.jar;C:\Users\TEAna\.jdks\corretto-1.8.0_432\jre\lib\jfr.jar;C:\Users\TEAna\.jdks\corretto-1.8.0_432\jre\classes" />
+    <property name="env.COMPUTERNAME" value="TOASTER" />
+    <property name="env.CommonProgramW6432" value="C:\Program Files\Common Files" />
+    <property name="env.ALLUSERSPROFILE" value="C:\ProgramData" />
+    <property name="sun.desktop" value="windows" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="ant.home" value="C:\ant\bin\.." />
+    <property name="java.runtime.version" value="1.8.0_432-b06" />
+    <property name="env.HOMEPATH" value="\Users\TEAna" />
+    <property name="env. ANDROID_HOME" value="C:\cmdline-tools\bin" />
+    <property name="user.name" value="TEAna" />
+    <property name="build.dir" value="target" />
+    <property name="env.PATH" value="C:mvnbin" />
+    <property name="user.language" value="ru" />
+    <property name="env.FILE_PATH" value="C:/Users/TEAna/IdeaProjects/laba5/userFiles/" />
+    <property name="sun.boot.library.path" value="C:\Users\TEAna\.jdks\corretto-1.8.0_432\jre\bin" />
+    <property name="ant.project.default-target" value="build-war" />
+    <property name="ant.project.name" value="web3" />
+    <property name="java.version" value="1.8.0_432" />
+    <property name="env.PROCESSOR_IDENTIFIER" value="AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD" />
+    <property name="user.timezone" value="" />
+    <property name="env.TEMP" value="C:\Users\TEAna\AppData\Local\Temp" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="java.endorsed.dirs" value="C:\Users\TEAna\.jdks\corretto-1.8.0_432\jre\lib\endorsed" />
+    <property name="env._JAVACMD" value="java.exe" />
+    <property name="sun.cpu.isalist" value="amd64" />
+    <property name="env.HOMEDRIVE" value="C:" />
+    <property name="env.XML_FILE_PATH" value="C:/Users/TEAna/IdeaProjects/laba5/example.xml" />
+    <property name="sun.jnu.encoding" value="Cp1251" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="file.separator" value="\" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="classes.dir" value="target/classes" />
+    <property name="java.class.version" value="52.0" />
+    <property name="env.FIG_JETBRAINS_SHELL_INTEGRATION" value="1" />
+    <property name="user.country" value="RU" />
+    <property name="java.home" value="C:\Users\TEAna\.jdks\corretto-1.8.0_432\jre" />
+    <property name="env.PSModulePath" value="C:\Users\TEAna\OneDrive\Документы\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules" />
+    <property name="env.APPDATA" value="C:\Users\TEAna\AppData\Roaming" />
+    <property name="env.PUBLIC" value="C:\Users\Public" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="env.ComSpec" value="C:\WINDOWS\system32\cmd.exe" />
+    <property name="env.OS" value="Windows_NT" />
+    <property name="env.CommonProgramFiles" value="C:\Program Files\Common Files" />
+    <property name="main-class" value="there-is-no-main-class-that-is-a-web-server-what-should-i-do" />
+    <property name="ant.file" value="C:\Users\TEAna\IdeaProjects\untitled1\build.xml" />
+    <property name="os.version" value="10.0" />
+    <property name="env.ProgramW6432" value="C:\Program Files" />
+    <property name="env._USE_CLASSPATH" value="no" />
+    <property name="env.=::" value="::\" />
+    <property name="path.separator" value=";" />
+    <property name="webapp.dir" value="src/main/webapp" />
+    <property name="java.vm.version" value="25.432-b06" />
+    <property name="user.variant" value="" />
+    <property name="env.USERPROFILE" value="C:\Users\TEAna" />
+    <property name="ant.library.dir" value="C:\ant\lib" />
+    <property name="env.wrench" value="C:\Users\TEAna\vsCode\AK" />
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+    <property name="env.TMP" value="C:\Users\TEAna\AppData\Local\Temp" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="java.specification.maintenance.version" value="6" />
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+    <property name="sun.stdout.encoding" value="cp866" />
+    <property name="env.PSExecutionPolicyPreference" value="Bypass" />
+    <property name="user.script" value="" />
+    <property name="user.home" value="C:\Users\TEAna" />
+    <property name="env.EFC_18064" value="1" />
+    <property name="env.ProgramData" value="C:\ProgramData" />
+    <property name="env.SESSIONNAME" value="Console" />
+    <property name="env.ProgramFiles(x86)" value="C:\Program Files (x86)" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="env.GHCUP_INSTALL_BASE_PREFIX" value="C:\" />
+    <property name="test.dir" value="src/test/java" />
+    <property name="java.library.path" value="C:\Users\TEAna\.jdks\corretto-1.8.0_432\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\Users\TEAna\AppData\Local\Microsoft\WindowsApps;C:\Users\TEAna\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\TEAna\AppData\Roaming\npm;C:\Users\TEAna\AppData\Local\GitHubDesktop\bin;C:\;C:\ghcup\bin;C:\Users\TEAna\AppData\Local\Programs\Python\Python312\Scripts;C:\Users\TEAna\AppData\Local\Programs\Python\Python312;C:\Users\TEAna\vsCode\AK\;C:\Program Files\SlikSvn\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\Users\TEAna\AppData\Local\Microsoft\WindowsApps;C:\Users\TEAna\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\TEAna\AppData\Roaming\npm;C:\Users\TEAna\AppData\Local\GitHubDesktop\bin;C:\;C:\ant\bin;C:\Users\TEAna\.jdks\corretto-1.8.0_432\bin;C:\mvn\bin;C:\flutter\bin;C:\android;;." />
+    <property name="java.vendor.url" value="https://aws.amazon.com/corretto/" />
+    <property name="env.NUMBER_OF_PROCESSORS" value="12" />
+    <property name="java.vm.vendor" value="Amazon.com Inc." />
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.10.15 compiled on August 25 2024" />
+    <property name="java.class.path" value="C:\ant\bin\..\lib\ant-launcher.jar;C:\ant\lib\ant-antlr.jar;C:\ant\lib\ant-apache-bcel.jar;C:\ant\lib\ant-apache-bsf.jar;C:\ant\lib\ant-apache-log4j.jar;C:\ant\lib\ant-apache-oro.jar;C:\ant\lib\ant-apache-regexp.jar;C:\ant\lib\ant-apache-resolver.jar;C:\ant\lib\ant-apache-xalan2.jar;C:\ant\lib\ant-commons-logging.jar;C:\ant\lib\ant-commons-net.jar;C:\ant\lib\ant-imageio.jar;C:\ant\lib\ant-jai.jar;C:\ant\lib\ant-jakartamail.jar;C:\ant\lib\ant-javamail.jar;C:\ant\lib\ant-jdepend.jar;C:\ant\lib\ant-jmf.jar;C:\ant\lib\ant-jsch.jar;C:\ant\lib\ant-junit.jar;C:\ant\lib\ant-junit4.jar;C:\ant\lib\ant-junitlauncher.jar;C:\ant\lib\ant-launcher.jar;C:\ant\lib\ant-netrexx.jar;C:\ant\lib\ant-swing.jar;C:\ant\lib\ant-testutil.jar;C:\ant\lib\ant-xz.jar;C:\ant\lib\ant.jar;C:\Users\TEAna\.jdks\corretto-1.8.0_432\lib\tools.jar" />
+    <property name="sun.java.command" value="org.apache.tools.ant.launch.Launcher report" />
+    <property name="env.TERM_SESSION_ID" value="66533c8d-184c-4e4a-a6de-e1223b40fe0b" />
+    <property name="project.name" value="my-little-jsf-app" />
+    <property name="env.GHCUP_MSYS2_ENV" value="MINGW64" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="ant.file.type" value="file" />
+    <property name="env.windir" value="C:\WINDOWS" />
+    <property name="env.LOGONSERVER" value="\\TOASTER" />
+    <property name="env.PROCESSOR_ARCHITECTURE" value="AMD64" />
+    <property name="java.vm.specification.version" value="1.8" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="sun.os.patch.level" value="" />
+    <property name="env.OneDrive" value="C:\Users\TEAna\OneDrive" />
+    <property name="env.ProgramFiles" value="C:\Program Files" />
+    <property name="env.ANT_HOME" value="C:\ant\bin\.." />
+    <property name="env.PROCESSOR_REVISION" value="5000" />
+    <property name="java.io.tmpdir" value="C:\Users\TEAna\AppData\Local\Temp\" />
+    <property name="env.CommonProgramFiles(x86)" value="C:\Program Files (x86)\Common Files" />
+    <property name="java.vendor.url.bug" value="https://github.com/corretto/corretto-8/issues/" />
+    <property name="env.OneDriveConsumer" value="C:\Users\TEAna\OneDrive" />
+    <property name="env.SystemRoot" value="C:\WINDOWS" />
+    <property name="project-type" value="war" />
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="env.ANT_CMD_LINE_ARGS" value=" report" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.ext.dirs" value="C:\Users\TEAna\.jdks\corretto-1.8.0_432\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext" />
+    <property name="env.LOCALAPPDATA" value="C:\Users\TEAna\AppData\Local" />
+    <property name="user.dir" value="C:\Users\TEAna\IdeaProjects\untitled1" />
+    <property name="test-reports.dir" value="target/test-reports" />
+    <property name="line.separator" value="&#xd;&#xa;" />
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM" />
+    <property name="env.PATHEXT" value=".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL" />
+    <property name="env.CABAL_DIR" value="C:\cabal" />
+    <property name="env.Path" value="C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\Users\TEAna\AppData\Local\Microsoft\WindowsApps;C:\Users\TEAna\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\TEAna\AppData\Roaming\npm;C:\Users\TEAna\AppData\Local\GitHubDesktop\bin;C:\;C:\ghcup\bin;C:\Users\TEAna\AppData\Local\Programs\Python\Python312\Scripts;C:\Users\TEAna\AppData\Local\Programs\Python\Python312;C:\Users\TEAna\vsCode\AK\;C:\Program Files\SlikSvn\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\WireGuard\;C:\Users\TEAna\AppData\Local\Microsoft\WindowsApps;C:\Users\TEAna\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\TEAna\AppData\Roaming\npm;C:\Users\TEAna\AppData\Local\GitHubDesktop\bin;C:\;C:\ant\bin;C:\Users\TEAna\.jdks\corretto-1.8.0_432\bin;C:\mvn\bin;C:\flutter\bin;C:\android;" />
+    <property name="basedir" value="C:\Users\TEAna\IdeaProjects\untitled1" />
+    <property name="ant.java.version" value="1.8" />
+    <property name="ant.core.lib" value="C:\ant\lib\ant.jar" />
+    <property name="env.USERNAME" value="TEAna" />
+    <property name="env.TERMINAL_EMULATOR" value="JetBrains-JediTerm" />
+    <property name="env.SystemDrive" value="C:" />
+    <property name="sun.stderr.encoding" value="cp866" />
+    <property name="file.encoding" value="Cp1251" />
+    <property name="env.USERDOMAIN" value="TOASTER" />
+    <property name="ant.file.web3" value="C:\Users\TEAna\IdeaProjects\untitled1\build.xml" />
+    <property name="ant.file.type.web3" value="file" />
+    <property name="java.specification.version" value="1.8" />
+    <property name="src.dir" value="src/main/java" />
+    <property name="env.=C:" value="C:\Users\TEAna\IdeaProjects\untitled1" />
+    <property name="ant.project.invoked-targets" value="report" />
+    <property name="env.PROCESSOR_LEVEL" value="25" />
+  </properties>
+  <error message="AreaCheckerTest" type="java.lang.ClassNotFoundException">java.lang.ClassNotFoundException: AreaCheckerTest
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+</error>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

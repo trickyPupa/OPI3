@@ -7,22 +7,20 @@ import managers.beans.FormControllerBean;
 import managers.beans.MethodControllerBean;
 import managers.dataModels.Dot;
 import managers.dataModels.Result;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.faces.context.FacesContext;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-
-@ExtendWith(MockitoExtension.class)
 public class AreaCheckerTest {
 
     @InjectMocks
@@ -44,10 +42,15 @@ public class AreaCheckerTest {
     @Mock
     DatabaseControllerBean db;
 
-    @BeforeAll
-    public static void setUp() {
+    @BeforeClass
+    public static void setUpClass() {
         FacesContext mockContext = Mockito.mock(FacesContext.class);
         Mockito.mockStatic(FacesContext.class).when(FacesContext::getCurrentInstance).thenReturn(mockContext);
+    }
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test

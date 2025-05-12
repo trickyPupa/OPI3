@@ -57,10 +57,19 @@
     </target>
 
     <target name="test" depends="build-war">
+        <mkdir dir="${test-reports.dir}"/>
+        <mkdir dir="${build.dir}/test-classes"/>
+        <javac srcdir="${test.dir}" destdir="${build.dir}/test-classes">
+            <classpath>
+                <path refid="project.classpath"/>
+                <pathelement location="${classes.dir}"/>
+            </classpath>
+        </javac>
         <junit printsummary="yes" haltonfailure="no">
             <classpath>
                 <path refid="project.classpath"/>
-                <pathelement location="${build.dir}/${project.name}.war"/>
+                <pathelement location="${classes.dir}"/>
+                <pathelement location="${build.dir}/test-classes"/>
             </classpath>
             <batchtest todir="${test-reports.dir}">
                 <fileset dir="${test.dir}" includes="**/*Test.java"/>
@@ -75,7 +84,7 @@
         </xmlvalidate>
     </target>
 
-    <target name="report" depends="test" if="env.SVN_HOME">
+    <target name="report" depends="test">
         <junitreport todir="${test-reports.dir}">
             <fileset dir="${test-reports.dir}" includes="TEST-*.xml"/>
             <report format="frames" todir="${test-reports.dir}/html"/>

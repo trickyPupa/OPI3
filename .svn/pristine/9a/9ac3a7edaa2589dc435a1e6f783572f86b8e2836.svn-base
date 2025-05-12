@@ -1,0 +1,98 @@
+<project name="web3" default="build-war" basedir=".">
+
+    <property file="build.properties" />
+    <property environment="env"/>
+    <path id="maven.path">
+        <pathelement path="${env.PATH}"/>
+    </path>
+
+    <path id="project.classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar" />
+    </path>
+
+    <target name="skachat">
+        <exec executable="mvn.cmd" failonerror="true">
+            <env key="${env.PATH}" value="${env.PATH}"/>
+            <arg value="dependency:copy-dependencies"/>
+            <arg value="-DoutputDirectory=${lib.dir}"/>
+        </exec>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="compile" depends="skachat">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="project.classpath"/>
+        <copy todir="${classes.dir}">
+            <fileset dir="${src.dir}" excludes="**/*.java"/>
+        </copy>
+    </target>
+
+    <target name="build" depends="compile">
+        <condition property="main.class.missing">
+            <not>
+                <available classname="${main-class}" classpath="${classes.dir}"/>
+            </not>
+        </condition>
+
+        <fail if="main.class.missing"
+              message="Error: main-class '${main-class}' not found in ${classes.dir}.
+                  Maxim Kyoto Evgenyevich, please use 'build-war' to build WAR."/>
+
+        <jar destfile="${build.dir}/${project.name}.jar" basedir="${classes.dir}"/>
+        <manifest>
+            <attribute name="Main-Class" value="${main-class}"/>
+        </manifest>
+    </target>
+
+    <target name="build-war" depends="compile">
+        <war destfile="${build.dir}/${project.name}.war" webxml="${webapp.dir}/WEB-INF/web.xml">
+            <classes dir="${classes.dir}"/>
+            <lib dir="${lib.dir}"/>
+            <fileset dir="${webapp.dir}" excludes="WEB-INF/web.xml"/>
+        </war>
+        <echo message="WAR was successfully built!"/>
+    </target>
+
+    <target name="test" depends="build-war">
+        <mkdir dir="${test-reports.dir}"/>
+        <junit printsummary="yes" haltonfailure="no">
+            <classpath>
+                <path refid="project.classpath"/>
+                <pathelement location="${build.dir}/${project.name}.war"/>
+            </classpath>
+            <batchtest todir="${test-reports.dir}">
+                <fileset dir="${test.dir}" includes="**/*Test.java"/>
+            </batchtest>
+            <formatter type="xml"/>
+        </junit>
+    </target>
+
+    <target name="xml">
+        <xmlvalidate lenient="no">
+            <fileset dir="${webapp.dir}" includes="**/*.xhtml, **/*.xml"/>
+        </xmlvalidate>
+    </target>
+
+    <target name="report" depends="test" if="env.SVN_HOME">
+        <junitreport todir="${test-reports.dir}">
+            <fileset dir="${test-reports.dir}" includes="TEST-*.xml"/>
+            <report format="frames" todir="${test-reports.dir}/html"/>
+        </junitreport>
+
+        <exec executable="svn" dir="${build.dir}">
+            <arg value="add"/>
+            <arg value="test-reports"/>
+        </exec>
+
+        <exec executable="svn">
+            <arg value="commit"/>
+            <arg value="-m"/>
+            <arg value="резы JUnit"/>
+            <arg value="${test-reports.dir}"/>
+        </exec>
+    </target>
+
+</project>
