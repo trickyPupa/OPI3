@@ -171,19 +171,6 @@ const validate = (xValue, yValue, rValue) => {
     const hiddenY = document.getElementById("hiddenForm:yInput");
     const hiddenR = document.getElementById("hiddenForm:rInput");
 
-    if (xValue < -2 || xValue > 2) {
-        createError("X is out of range");
-        return false;
-    }
-    if (yValue < -5 || yValue > 5) {
-        createError("Y is out of range");
-        return false;
-    }
-    if (rValue < 2 || rValue > 5) {
-        createError("R is out of range");
-        return false;
-    }
-
     console.log(`Validated values: X=${xValue}, Y=${yValue}, R=${rValue}`);
     hiddenX.value = xValue;
     hiddenY.value = yValue;

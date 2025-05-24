@@ -109,9 +109,14 @@ public class AreaCheckerTest {
 
         dataSaverBean.saveData(dot);
 
-        verify(areaCheckerService).processDot(dot);
-        verify(pointsRepository).addResult(mockResult);
-        verify(db).saveResult(mockResult);
-        assertEquals(mockResult, dataSaverBean.getResult());
+        try {
+            verify(areaCheckerService).processDot(dot);
+            verify(pointsRepository).addResult(mockResult);
+            verify(db).saveResult(mockResult);
+            assertEquals(mockResult, dataSaverBean.getResult());
+        }
+        catch (Exception e) {
+            fail();
+        }
     }
 }

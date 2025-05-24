@@ -1,4 +1,6 @@
-package managers;
+package managers.beans;
+
+import managers.DebugTool;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

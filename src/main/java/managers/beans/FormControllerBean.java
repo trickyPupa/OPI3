@@ -1,6 +1,7 @@
 package managers.beans;
 
 import managers.DebugTool;
+import managers.MBeans.beans.JvmInfo;
 import managers.dataModels.Dot;
 import managers.databaseManager.DatabaseCreator;
 
@@ -20,6 +21,9 @@ public class FormControllerBean implements Serializable {
 
     @Inject
     private MethodControllerBean controller;
+
+    @Inject
+    private JvmInfo jvmInfo;
 
     private final DebugTool logger = new DebugTool();
 
@@ -54,11 +58,22 @@ public class FormControllerBean implements Serializable {
     @PostConstruct
     public void init() {
         try {
+            startInspect();
+            logger.info("Now Chinese government will know which JVM you are using");
+
             DatabaseCreator.createTables();
             logger.info("Tables created");
+
         } catch (Exception e) {
             logger.warning(e.getMessage());
         }
+    }
+
+    private void startInspect(){
+        jvmInfo.getJvmName();
+        jvmInfo.getJvmVersion();
+        jvmInfo.getJvmVendor();
+        jvmInfo.getJvmSpecVersion();
     }
 
     public void resetFormState() {

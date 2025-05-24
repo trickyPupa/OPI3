@@ -1,5 +1,4 @@
 <project name="web3" default="build-war" basedir=".">
-
     <property file="build.properties" />
     <property environment="env"/>
     <path id="maven.path">
@@ -82,25 +81,6 @@
         <xmlvalidate lenient="no">
             <fileset dir="${webapp.dir}" includes="**/*.xhtml, **/*.xml"/>
         </xmlvalidate>
-    </target>
-
-    <target name="report" depends="test">
-        <junitreport todir="${test-reports.dir}">
-            <fileset dir="${test-reports.dir}" includes="TEST-*.xml"/>
-            <report format="frames" todir="${test-reports.dir}/html"/>
-        </junitreport>
-
-        <exec executable="svn" dir="${build.dir}">
-            <arg value="add"/>
-            <arg value="test-reports"/>
-        </exec>
-
-        <exec executable="svn">
-            <arg value="commit"/>
-            <arg value="-m"/>
-            <arg value="резы JUnit"/>
-            <arg value="${test-reports.dir}"/>
-        </exec>
     </target>
 
 </project>

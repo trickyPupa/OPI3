@@ -1,10 +1,10 @@
-FROM jboss/wildfly:15.0.1.Final
+FROM jboss/wildfly:26.1.3.Final
 
 LABEL authors="naku0 <https://github.com/naku0>"
 
 WORKDIR /opt/jboss/wildfly/standalone/deployments/
 
-COPY target/web3.war /opt/jboss/wildfly/standalone/deployments/ROOT.war
+COPY target/my-little-jsf-app.war /opt/jboss/wildfly/standalone/deployments/ROOT.war
 COPY ./postgres-ds.xml /opt/jboss/wildfly/standalone/configuration/
 COPY ./lib/postgresql-42.7.4.jar /opt/jboss/wildfly/standalone/deployments/
 

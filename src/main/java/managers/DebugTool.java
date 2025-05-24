@@ -16,4 +16,8 @@ public class DebugTool {
         logger.log(Level.WARNING, warning);
     }
 
+    public void error(String error) {
+        logger.log(Level.SEVERE, error);
+    }
+
 }

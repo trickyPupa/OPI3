@@ -1,6 +1,7 @@
 package managers;
 
-
+import managers.MBeans.beans.HitCounter;
+import managers.MBeans.beans.HitRatio;
 import managers.dataModels.Dot;
 import managers.dataModels.Result;
 
@@ -14,11 +15,22 @@ public class AreaCheckerService {
     @Inject
     private AreaChecker areaChecker;
 
+    @Inject
+    private HitCounter hitCounter;
+
+    @Inject
+    private HitRatio hitRatio;
+
     private final DebugTool log = new DebugTool();
 
     public Result processDot(Dot dot)  {
         long start = System.nanoTime();
         boolean status = areaChecker.checkSpot(dot.getX(), dot.getY(), dot.getR());
+        hitCounter.incrementTotalHits();
+        if (!status) {
+            hitCounter.incrementMissedHits();
+        }
+        hitRatio.poschitatProcent();
         double timeOfCalculating = (double) (System.nanoTime() - start) / 1_000_000;
         String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 

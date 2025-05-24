@@ -23,11 +23,16 @@ public class DataSaverBean {
 
     DebugTool log = new DebugTool();
 
-    public void saveData(Dot dot)  {
-        result = areaCheckService.processDot(dot);
-        saver.addResult(result);
-        db.saveResult(result);
-        log.info("Data saved!");
+    public void saveData(Dot dot) {
+        try {
+            result = areaCheckService.processDot(dot);
+            saver.addResult(result);
+            db.saveResult(result);
+            log.info("Data saved!");
+        }
+        catch (Exception e) {
+            log.error(e.getMessage());
+        }
     }
 
     public Result getResult() {

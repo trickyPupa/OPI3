@@ -1,6 +1,5 @@
 package managers.beans;
 
-import managers.ErrorController;
 import managers.dataModels.Dot;
 
 import javax.enterprise.context.RequestScoped;

@@ -1,6 +1,5 @@
 package managers.beans;
 
-import managers.ErrorController;
 import managers.dataModels.Result;
 import managers.databaseManager.DatabaseQueryManager;
 
@@ -13,31 +12,21 @@ public class DatabaseControllerBean {
     @Inject
     private DatabaseQueryManager queriesDirector;
 
-
-
-    public void saveResult(Result result) {
+    public void saveResult(Result result) throws Exception {
         String query = "INSERT INTO results (x, y, r, status, currentTime, time_of_calculating) VALUES (?, ?, ?, ?, ?, ?)";
-
-        try {
-            queriesDirector.executeInsertQuery(
-                    query,
-                    result.getDot().getX(),
-                    result.getDot().getY(),
-                    result.getDot().getR(),
-                    result.getStatus(),
-                    result.getCurrentTime(),
-                    result.getTimeOfCalculating()
-            );
-        } catch (Exception e) {
-            ErrorController.send500Error("Проблемы с запросом в базу данных!");
-        }
+        queriesDirector.executeInsertQuery(
+                query,
+                result.getDot().getX(),
+                result.getDot().getY(),
+                result.getDot().getR(),
+                result.getStatus(),
+                result.getCurrentTime(),
+                result.getTimeOfCalculating()
+        );
     }
 
-    public void executeQuery(String query, Object... parameters) {
-        try {
-            queriesDirector.executeInsertQuery(query, parameters);
-        } catch (Exception e) {
-            ErrorController.send500Error("Ошибка выполнения запроса.");
-        }
+    public void executeQuery(String query, Object... parameters) throws Exception {
+        queriesDirector.executeInsertQuery(query, parameters);
+
     }
 }
